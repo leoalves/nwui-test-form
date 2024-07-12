@@ -1,6 +1,7 @@
 import '../global.css';
 import 'expo-dev-client';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { Icon } from '@roninoss/icons';
 import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -27,13 +28,14 @@ export default function RootLayout() {
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
       {/* WRAP YOUR APP WITH ANY ADDITIONAL PROVIDERS HERE */}
-
+      <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
       <NavThemeProvider value={NAV_THEME[colorScheme]}>
         <Stack screenOptions={SCREEN_OPTIONS}>
           <Stack.Screen name="index" options={INDEX_OPTIONS} />
           <Stack.Screen name="modal" options={MODAL_OPTIONS} />
         </Stack>
       </NavThemeProvider>
+      </KeyboardProvider>
     </>
   );
 }
